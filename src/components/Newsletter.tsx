@@ -65,6 +65,14 @@ const Newsletter = () => {
 
           if (updateError) throw updateError;
 
+          // Send welcome email
+          await supabase.functions.invoke('send-email', {
+            body: {
+              type: 'newsletter',
+              data: { email: sanitizedEmail }
+            }
+          });
+
           toast({
             title: "Subscription Reactivated!",
             description: "Your newsletter subscription has been reactivated",
@@ -81,6 +89,14 @@ const Newsletter = () => {
           }]);
 
         if (insertError) throw insertError;
+
+        // Send welcome email
+        await supabase.functions.invoke('send-email', {
+          body: {
+            type: 'newsletter',
+            data: { email: sanitizedEmail }
+          }
+        });
 
         toast({
           title: "Subscribed Successfully!",
