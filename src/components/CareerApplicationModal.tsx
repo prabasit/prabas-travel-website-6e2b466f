@@ -79,6 +79,21 @@ const CareerApplicationModal = ({ isOpen, onClose, career }: CareerApplicationMo
 
       if (error) throw error;
 
+      // Send confirmation and admin notification emails
+      await supabase.functions.invoke('send-email', {
+        body: {
+          type: 'career',
+          data: {
+            email: formData.email,
+            name: formData.name,
+            phone: formData.phone,
+            position: career.title,
+            coverLetter: formData.cover_letter,
+            resumeUrl: formData.resume_url
+          }
+        }
+      });
+
       toast({
         title: "Application Submitted",
         description: "Your application has been submitted successfully. We'll contact you soon!",

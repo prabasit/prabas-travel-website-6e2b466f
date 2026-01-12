@@ -71,6 +71,20 @@ const ContactSection = () => {
 
       if (error) throw error;
 
+      // Send confirmation and admin notification emails
+      await supabase.functions.invoke('send-email', {
+        body: {
+          type: 'inquiry',
+          data: {
+            email: sanitizedData.email,
+            name: sanitizedData.name,
+            phone: sanitizedData.phone,
+            subject: sanitizedData.subject,
+            message: sanitizedData.message
+          }
+        }
+      });
+
       toast({
         title: "Message Sent!",
         description: "Thank you for your inquiry. We'll get back to you soon.",
