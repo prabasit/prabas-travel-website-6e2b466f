@@ -534,37 +534,37 @@ export type Database = {
       }
       services: {
         Row: {
-          created_at: string | null
+          created_at: string
           description: string | null
-          display_order: number | null
+          display_order: number
           features: Json | null
+          icon_url: string | null
           id: string
-          image_url: string | null
-          is_active: boolean | null
+          is_active: boolean
           title: string
-          updated_at: string | null
+          updated_at: string
         }
         Insert: {
-          created_at?: string | null
+          created_at?: string
           description?: string | null
-          display_order?: number | null
+          display_order?: number
           features?: Json | null
+          icon_url?: string | null
           id?: string
-          image_url?: string | null
-          is_active?: boolean | null
+          is_active?: boolean
           title: string
-          updated_at?: string | null
+          updated_at?: string
         }
         Update: {
-          created_at?: string | null
+          created_at?: string
           description?: string | null
-          display_order?: number | null
+          display_order?: number
           features?: Json | null
+          icon_url?: string | null
           id?: string
-          image_url?: string | null
-          is_active?: boolean | null
+          is_active?: boolean
           title?: string
-          updated_at?: string | null
+          updated_at?: string
         }
         Relationships: []
       }
@@ -604,10 +604,13 @@ export type Database = {
           id: string
           image_url: string | null
           is_active: boolean | null
+          linkedin_url: string | null
           name: string
           phone: string | null
+          photo_url: string | null
           position: string
           social_links: Json | null
+          twitter_url: string | null
           updated_at: string | null
         }
         Insert: {
@@ -618,10 +621,13 @@ export type Database = {
           id?: string
           image_url?: string | null
           is_active?: boolean | null
+          linkedin_url?: string | null
           name: string
           phone?: string | null
+          photo_url?: string | null
           position: string
           social_links?: Json | null
+          twitter_url?: string | null
           updated_at?: string | null
         }
         Update: {
@@ -632,10 +638,13 @@ export type Database = {
           id?: string
           image_url?: string | null
           is_active?: boolean | null
+          linkedin_url?: string | null
           name?: string
           phone?: string | null
+          photo_url?: string | null
           position?: string
           social_links?: Json | null
+          twitter_url?: string | null
           updated_at?: string | null
         }
         Relationships: []
@@ -682,6 +691,21 @@ export type Database = {
         }
         Relationships: []
       }
+      user_roles: {
+        Row: {
+          role: string
+          user_id: string
+        }
+        Insert: {
+          role: string
+          user_id: string
+        }
+        Update: {
+          role?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -701,14 +725,8 @@ export type Database = {
           user_data: Json
         }[]
       }
-      get_current_user_role: {
-        Args: Record<PropertyKey, never>
-        Returns: string
-      }
-      hash_password: {
-        Args: { password: string }
-        Returns: string
-      }
+      get_current_user_role: { Args: never; Returns: string }
+      hash_password: { Args: { password: string }; Returns: string }
       secure_admin_login: {
         Args: { login_email: string; login_password: string }
         Returns: {
