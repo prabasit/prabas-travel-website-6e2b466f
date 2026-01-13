@@ -403,7 +403,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log(`Processing ${type} email for:`, data.email);
 
-    const emailsToSend: Array<{ to: string; subject: string; html: string }> = [];
+    const emailsToSend: Array<{ to: string; subject: string; html: string; replyTo?: string }> = [];
 
     switch (type) {
       case 'newsletter': {
@@ -413,14 +413,16 @@ const handler = async (req: Request): Promise<Response> => {
           to: data.email,
           subject: welcomeEmail.subject,
           html: welcomeEmail.html,
+          replyTo: adminEmail,
         });
-        
+
         // Email to admin
         const adminNotification = emailTemplates.newsletterAdmin(data.email);
         emailsToSend.push({
           to: adminEmail,
           subject: adminNotification.subject,
           html: adminNotification.html,
+          replyTo: data.email,
         });
         break;
       }
@@ -436,8 +438,9 @@ const handler = async (req: Request): Promise<Response> => {
           to: data.email,
           subject: confirmationEmail.subject,
           html: confirmationEmail.html,
+          replyTo: adminEmail,
         });
-        
+
         // Notification to admin
         const adminNotification = emailTemplates.inquiryAdmin(
           data.name || "Unknown",
@@ -450,6 +453,7 @@ const handler = async (req: Request): Promise<Response> => {
           to: adminEmail,
           subject: adminNotification.subject,
           html: adminNotification.html,
+          replyTo: data.email,
         });
         break;
       }
@@ -464,8 +468,9 @@ const handler = async (req: Request): Promise<Response> => {
           to: data.email,
           subject: confirmationEmail.subject,
           html: confirmationEmail.html,
+          replyTo: adminEmail,
         });
-        
+
         // Notification to admin
         const adminNotification = emailTemplates.careerAdmin(
           data.name || "Unknown",
@@ -479,6 +484,7 @@ const handler = async (req: Request): Promise<Response> => {
           to: adminEmail,
           subject: adminNotification.subject,
           html: adminNotification.html,
+          replyTo: data.email,
         });
         break;
       }
@@ -489,25 +495,40 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Send all emails
     const results = await Promise.all(
-      emailsToSend.map(email =>
+      emailsToSend.map((email) =>
         resend.emails.send({
-          from: "Prabas Travel <onboarding@resend.dev>",
+          // IMPORTANT: To send from info@prabastravel.com, you MUST verify prabastravel.com in Resend.
+          // Otherwise Resend will keep you in "testing" mode and block sends to external recipients.
+          from: "Prabas Travel <info@prabastravel.com>",
           to: [email.to],
           subject: email.subject,
           html: email.html,
+          replyTo: email.replyTo,
         })
       )
     );
 
+    const failed = results
+      .map((r, idx) => ({ idx, error: r.error }))
+      .filter((x) => x.error);
+
+    if (failed.length > 0) {
+      console.error("One or more emails failed:", failed);
+      return new Response(
+        JSON.stringify({ success: false, results }),
+        {
+          status: 502,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
     console.log("Emails sent successfully:", results);
 
-    return new Response(
-      JSON.stringify({ success: true, results }),
-      {
-        status: 200,
-        headers: { "Content-Type": "application/json", ...corsHeaders },
-      }
-    );
+    return new Response(JSON.stringify({ success: true, results }), {
+      status: 200,
+      headers: { "Content-Type": "application/json", ...corsHeaders },
+    });
   } catch (error: any) {
     console.error("Error in send-email function:", error);
     return new Response(
