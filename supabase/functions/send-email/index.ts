@@ -46,7 +46,7 @@ const emailWrapper = (content: string, preheader: string = "") => `
                 ✈️ Prabas Travel
               </h1>
               <p style="margin: 8px 0 0 0; color: rgba(255,255,255,0.85); font-size: 14px;">
-                Your Journey, Our Passion
+                Connecting Nepal to the World
               </p>
             </td>
           </tr>
@@ -68,7 +68,7 @@ const emailWrapper = (content: string, preheader: string = "") => `
                 Chhaya Devi Complex, Shop No. 315-317, Thamel, Kathmandu, Nepal
               </p>
               <p style="margin: 0 0 16px 0; font-size: 13px; color: #64748b;">
-                📞 +977-1-4700921 | ✉️ info@prabastravel.com
+                📞 +977-1-4700921 ,4700922 | ✉️ info@prabastravel.com
               </p>
               <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #cbd5e1;">
                 <a href="https://prabastravel.com" style="color: ${brandStyles.primaryColor}; text-decoration: none; font-size: 13px; font-weight: 500;">
@@ -124,7 +124,7 @@ const infoBox = (title: string, items: { label: string; value: string }[]) => `
 const emailTemplates = {
   // Newsletter - Welcome email to subscriber
   newsletterWelcome: (email: string) => ({
-    subject: "🎉 Welcome to Prabas Travel Newsletter!",
+    subject: " Welcome to Prabas Travel Newsletter!",
     html: emailWrapper(`
       <div style="text-align: center; margin-bottom: 32px;">
         <div style="width: 80px; height: 80px; background: linear-gradient(135deg, ${brandStyles.secondaryColor} 0%, #ea580c 100%); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;">
@@ -139,7 +139,7 @@ const emailTemplates = {
       </div>
       
       <p style="margin: 0 0 20px 0; font-size: 15px; line-height: 1.7; color: ${brandStyles.textColor};">
-        Thank you for subscribing to the <strong>Prabas Travel Newsletter</strong>! You've just taken the first step towards discovering Nepal's most incredible destinations.
+        Thank you for subscribing to the <strong>Prabas Travel Newsletter</strong>! You've just taken the first step towards your Journey to the World.
       </p>
       
       <p style="margin: 0 0 24px 0; font-size: 15px; line-height: 1.7; color: ${brandStyles.textColor};">
@@ -158,7 +158,7 @@ const emailTemplates = {
           <span style="font-size: 24px; margin-right: 12px;">🏔️</span>
           <div>
             <strong style="color: ${brandStyles.primaryColor};">Destination Guides</strong>
-            <p style="margin: 4px 0 0 0; font-size: 14px; color: #64748b;">Insider tips and hidden gems across Nepal</p>
+            <p style="margin: 4px 0 0 0; font-size: 14px; color: #64748b;">Insider tips and hidden gems across World</p>
           </div>
         </div>
         <div style="display: flex; align-items: flex-start;">
@@ -209,7 +209,7 @@ const emailTemplates = {
       </h2>
       
       <p style="margin: 0 0 24px 0; font-size: 15px; line-height: 1.7; color: ${brandStyles.textColor};">
-        We've received your message and our team is already on it! You can expect a response within <strong>24-48 hours</strong>.
+        We've received your message and our team is already on it! Thank you for Reaching to us.
       </p>
       
       ${infoBox("Your Message Summary", [
@@ -220,7 +220,7 @@ const emailTemplates = {
       
       <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 12px; padding: 20px; margin: 24px 0;">
         <p style="margin: 0; font-size: 14px; color: #92400e;">
-          <strong>💡 Quick Tip:</strong> While you wait, check out our popular destinations and travel packages on our website!
+          <strong>💡 Quick Tip:</strong> While you wait, check out Holidays destination we offer!
         </p>
       </div>
       
@@ -229,9 +229,10 @@ const emailTemplates = {
       </p>
       
       <div style="text-align: center;">
-        ${styledButton("Browse Packages", "https://prabastravel.com")}
+        ${styledButton("Holiday Packages", "https://prabasholidays.com")}
+        ${styledButton("Book your Flights & Hotels", "https://flightsnepal.com")}
       </div>
-    `, `Thank you for contacting Prabas Travel! We'll respond within 24-48 hours.`),
+    `, `Thank you for contacting Prabas Travel! We'll reach you out Shortly.`),
   }),
 
   // Inquiry - Notification to admin
