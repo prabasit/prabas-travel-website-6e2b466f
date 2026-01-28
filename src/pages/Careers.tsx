@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import CareerJobCard from '../components/CareerJobCard';
 import CareerApplicationModal from '../components/CareerApplicationModal';
 import { supabase } from '@/integrations/supabase/client';
+import SEOHead from '../components/SEOHead';
 
 interface Career {
   id: string;
@@ -59,6 +60,7 @@ const Careers = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead pageIdentifier="careers" />
       <Header />
       {/* UPDATED: Corrected padding classes to prevent content from hiding under the header */}
       <div className="pt-32 pb-16">

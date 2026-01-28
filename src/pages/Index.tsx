@@ -9,10 +9,12 @@ import AwardsSection from '../components/AwardsSection';
 import ContactSection from '../components/ContactSection';
 import Newsletter from '../components/Newsletter';
 import Footer from '../components/Footer';
+import SEOHead from '../components/SEOHead';
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead pageIdentifier="home" />
       <Header />
       <main>
         {/* Hero Section */}

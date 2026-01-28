@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Plane, Clock, Shield, MapPin, ExternalLink } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
+import SEOHead from '../components/SEOHead';
 
 interface FlightFeature {
   title: string;
@@ -124,6 +125,7 @@ const FlightsNepal = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead pageIdentifier="flights-nepal" />
       <Header />
       
       <div className="pt-24">

@@ -6,6 +6,7 @@ import { supabase } from '@/integrations/supabase/client';
 import SecureContent from '@/components/SecureContent';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { Helmet } from 'react-helmet-async';
 
 const DynamicPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -46,6 +47,16 @@ const DynamicPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>{page.title} | Prabas Travel</title>
+        {page.meta_description && (
+          <meta name="description" content={page.meta_description} />
+        )}
+        <meta property="og:title" content={page.title} />
+        {page.meta_description && (
+          <meta property="og:description" content={page.meta_description} />
+        )}
+      </Helmet>
       <Header />
       <main className="pt-24 pb-16">
         <div className="container mx-auto px-4">

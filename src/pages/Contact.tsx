@@ -3,10 +3,12 @@ import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ContactSection from '../components/ContactSection';
+import SEOHead from '../components/SEOHead';
 
 const Contact = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead pageIdentifier="contact" />
       <Header />
       <main className="pt-16">
         <div className="container mx-auto px-4 py-12">
