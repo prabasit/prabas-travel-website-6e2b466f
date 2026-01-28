@@ -17,6 +17,7 @@ import {
   Star,
   ChevronRight,
   Menu,
+  Search,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -67,6 +68,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ isCollapsed, onToggleCollap
         { title: 'Banner Management', href: '/admin/banners', icon: Image, description: 'Manage homepage banners' },
         { title: 'Pages CMS', href: '/admin/pages', icon: Layout, description: 'Create and edit pages' },
         { title: 'Blog Posts', href: '/admin/blogs', icon: FileText, description: 'Manage blog content' },
+        { title: 'SEO Management', href: '/admin/seo', icon: Search, description: 'Manage SEO settings' },
       ],
     },
     {

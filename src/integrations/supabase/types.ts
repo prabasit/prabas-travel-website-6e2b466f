@@ -281,6 +281,71 @@ export type Database = {
           },
         ]
       }
+      blog_seo: {
+        Row: {
+          blog_id: string
+          canonical_url: string | null
+          created_at: string | null
+          id: string
+          meta_description: string | null
+          meta_keywords: string | null
+          meta_title: string | null
+          og_description: string | null
+          og_image: string | null
+          og_title: string | null
+          robots: string | null
+          structured_data: Json | null
+          twitter_description: string | null
+          twitter_image: string | null
+          twitter_title: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          blog_id: string
+          canonical_url?: string | null
+          created_at?: string | null
+          id?: string
+          meta_description?: string | null
+          meta_keywords?: string | null
+          meta_title?: string | null
+          og_description?: string | null
+          og_image?: string | null
+          og_title?: string | null
+          robots?: string | null
+          structured_data?: Json | null
+          twitter_description?: string | null
+          twitter_image?: string | null
+          twitter_title?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          blog_id?: string
+          canonical_url?: string | null
+          created_at?: string | null
+          id?: string
+          meta_description?: string | null
+          meta_keywords?: string | null
+          meta_title?: string | null
+          og_description?: string | null
+          og_image?: string | null
+          og_title?: string | null
+          robots?: string | null
+          structured_data?: Json | null
+          twitter_description?: string | null
+          twitter_image?: string | null
+          twitter_title?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "blog_seo_blog_id_fkey"
+            columns: ["blog_id"]
+            isOneToOne: true
+            referencedRelation: "blog_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       careers: {
         Row: {
           application_deadline: string | null
@@ -359,6 +424,69 @@ export type Database = {
           is_active?: boolean
           title?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      global_seo: {
+        Row: {
+          apple_touch_icon: string | null
+          bing_site_verification: string | null
+          default_og_image: string | null
+          facebook_pixel_id: string | null
+          facebook_url: string | null
+          favicon_url: string | null
+          google_analytics_id: string | null
+          google_site_verification: string | null
+          google_tag_manager_id: string | null
+          id: string
+          instagram_url: string | null
+          linkedin_url: string | null
+          organization_schema: Json | null
+          site_name: string | null
+          site_tagline: string | null
+          twitter_handle: string | null
+          updated_at: string | null
+          youtube_url: string | null
+        }
+        Insert: {
+          apple_touch_icon?: string | null
+          bing_site_verification?: string | null
+          default_og_image?: string | null
+          facebook_pixel_id?: string | null
+          facebook_url?: string | null
+          favicon_url?: string | null
+          google_analytics_id?: string | null
+          google_site_verification?: string | null
+          google_tag_manager_id?: string | null
+          id?: string
+          instagram_url?: string | null
+          linkedin_url?: string | null
+          organization_schema?: Json | null
+          site_name?: string | null
+          site_tagline?: string | null
+          twitter_handle?: string | null
+          updated_at?: string | null
+          youtube_url?: string | null
+        }
+        Update: {
+          apple_touch_icon?: string | null
+          bing_site_verification?: string | null
+          default_og_image?: string | null
+          facebook_pixel_id?: string | null
+          facebook_url?: string | null
+          favicon_url?: string | null
+          google_analytics_id?: string | null
+          google_site_verification?: string | null
+          google_tag_manager_id?: string | null
+          id?: string
+          instagram_url?: string | null
+          linkedin_url?: string | null
+          organization_schema?: Json | null
+          site_name?: string | null
+          site_tagline?: string | null
+          twitter_handle?: string | null
+          updated_at?: string | null
+          youtube_url?: string | null
         }
         Relationships: []
       }
@@ -463,6 +591,93 @@ export type Database = {
           id?: string
           is_active?: boolean
           subscribed_at?: string
+        }
+        Relationships: []
+      }
+      page_seo: {
+        Row: {
+          additional_meta: Json | null
+          canonical_url: string | null
+          created_at: string | null
+          id: string
+          is_active: boolean | null
+          meta_description: string | null
+          meta_keywords: string | null
+          meta_title: string | null
+          og_description: string | null
+          og_image: string | null
+          og_locale: string | null
+          og_site_name: string | null
+          og_title: string | null
+          og_type: string | null
+          og_url: string | null
+          page_identifier: string
+          page_title: string
+          robots: string | null
+          structured_data: Json | null
+          twitter_card: string | null
+          twitter_creator: string | null
+          twitter_description: string | null
+          twitter_image: string | null
+          twitter_site: string | null
+          twitter_title: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          additional_meta?: Json | null
+          canonical_url?: string | null
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          meta_description?: string | null
+          meta_keywords?: string | null
+          meta_title?: string | null
+          og_description?: string | null
+          og_image?: string | null
+          og_locale?: string | null
+          og_site_name?: string | null
+          og_title?: string | null
+          og_type?: string | null
+          og_url?: string | null
+          page_identifier: string
+          page_title: string
+          robots?: string | null
+          structured_data?: Json | null
+          twitter_card?: string | null
+          twitter_creator?: string | null
+          twitter_description?: string | null
+          twitter_image?: string | null
+          twitter_site?: string | null
+          twitter_title?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          additional_meta?: Json | null
+          canonical_url?: string | null
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          meta_description?: string | null
+          meta_keywords?: string | null
+          meta_title?: string | null
+          og_description?: string | null
+          og_image?: string | null
+          og_locale?: string | null
+          og_site_name?: string | null
+          og_title?: string | null
+          og_type?: string | null
+          og_url?: string | null
+          page_identifier?: string
+          page_title?: string
+          robots?: string | null
+          structured_data?: Json | null
+          twitter_card?: string | null
+          twitter_creator?: string | null
+          twitter_description?: string | null
+          twitter_image?: string | null
+          twitter_site?: string | null
+          twitter_title?: string | null
+          updated_at?: string | null
         }
         Relationships: []
       }

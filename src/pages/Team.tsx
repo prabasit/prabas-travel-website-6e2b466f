@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import { Card, CardTitle } from '@/components/ui/card';
 import { supabase } from '@/integrations/supabase/client';
 import { Linkedin, Twitter } from 'lucide-react';
+import SEOHead from '../components/SEOHead';
 
 interface TeamMember {
   id: string;
@@ -43,6 +44,7 @@ const Team = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead pageIdentifier="team" />
       <Header />
       
       <div className="pt-24">

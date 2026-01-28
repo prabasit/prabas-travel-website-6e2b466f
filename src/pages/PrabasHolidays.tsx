@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Globe, Plane, Sun, ShoppingBag, ExternalLink } from 'lucide-react'; // Assuming these icons for holidays
 import { supabase } from '@/integrations/supabase/client';
+import SEOHead from '../components/SEOHead';
 
 interface HolidayFeature {
   title: string;
@@ -126,6 +127,7 @@ const Holidays = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead pageIdentifier="prabas-holidays" />
       <Header />
       
       <div className="pt-24">
