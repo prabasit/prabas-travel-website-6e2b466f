@@ -15,6 +15,8 @@ import Testimonials from "./pages/Testimonials";
 import Awards from "./pages/Awards";
 import FlightsNepal from "./pages/FlightsNepal";
 import PrabasHolidays from "./pages/PrabasHolidays";
+import PrabasAustralia from "./pages/PrabasAustralia";
+import PrabasUAE from "./pages/PrabasUAE";
 import Inquiries from "./pages/Inquiries";
 import DynamicPage from "./pages/DynamicPage";
 import NotFound from "./pages/NotFound";
@@ -62,6 +64,8 @@ const App = () => (
             <Route path="/awards" element={<Awards />} />
             <Route path="/flights-nepal" element={<FlightsNepal />} />
             <Route path="/prabas-holidays" element={<PrabasHolidays />} />
+            <Route path="/prabas-travel-australia" element={<PrabasAustralia />} />
+            <Route path="/prabas-travel-uae" element={<PrabasUAE />} />
             <Route path="/inquiries" element={<Inquiries />} />
             
             {/* Admin routes */}

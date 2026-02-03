@@ -17,6 +17,8 @@ const Header = () => {
   const businessMenuItems = [
     { name: 'Prabas Holidays', href: '/prabas-holidays' },
     { name: 'Flights Nepal', href: '/flights-nepal' },
+    { name: 'Prabas Travel Australia', href: '/prabas-travel-australia' },
+    { name: 'Prabas Travel UAE', href: '/prabas-travel-uae' },
   ];
 
   return (
