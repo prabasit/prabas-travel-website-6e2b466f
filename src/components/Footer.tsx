@@ -63,8 +63,10 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Our Companies</h4>
             <ul className="space-y-2">
-              <li><a href="#holidays" className="hover:text-yellow-400 transition-colors">Prabas Holidays</a></li>
-              <li><a href="#flights" className="hover:text-yellow-400 transition-colors">FlightsNepal.com</a></li>
+              <li><a href="/prabas-holidays" className="hover:text-yellow-400 transition-colors">Prabas Holidays</a></li>
+              <li><a href="/flights-nepal" className="hover:text-yellow-400 transition-colors">FlightsNepal.com</a></li>
+              <li><a href="https://prabastravel.com.au" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-400 transition-colors">Prabas Travel Australia</a></li>
+              <li><a href="https://prabastravel.ae" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-400 transition-colors">Prabas Travel UAE</a></li>
             </ul>
             
             <h4 className="text-lg font-semibold mb-4 mt-6">Popular Destinations</h4>
