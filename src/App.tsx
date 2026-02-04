@@ -34,6 +34,9 @@ import AwardsManagement from "./pages/admin/AwardsManagement";
 import CareerManagement from "./pages/admin/CareerManagement";
 import FlightsNepalManagement from "./pages/admin/FlightsNepalManagement";
 import PrabasHolidaysManagement from "./pages/admin/PrabasHolidaysManagement";
+import PrabasAustraliaManagement from "./pages/admin/PrabasAustraliaManagement";
+import PrabasUAEManagement from "./pages/admin/PrabasUAEManagement";
+import HomepageAdsManagement from "./pages/admin/HomepageAdsManagement";
 import InquiriesManagement from "./pages/admin/InquiriesManagement";
 import NewsletterManagement from "./pages/admin/NewsletterManagement";
 import AdminManagement from "./pages/admin/AdminManagement";
@@ -81,6 +84,9 @@ const App = () => (
             <Route path="/admin/careers" element={<CareerManagement />} />
             <Route path="/admin/flights-nepal" element={<FlightsNepalManagement />} />
             <Route path="/admin/prabas-holidays" element={<PrabasHolidaysManagement />} />
+            <Route path="/admin/prabas-australia" element={<PrabasAustraliaManagement />} />
+            <Route path="/admin/prabas-uae" element={<PrabasUAEManagement />} />
+            <Route path="/admin/homepage-ads" element={<HomepageAdsManagement />} />
             <Route path="/admin/inquiries" element={<InquiriesManagement />} />
             <Route path="/admin/newsletter" element={<NewsletterManagement />} />
             <Route path="/admin/admin-management" element={<AdminManagement />} />

@@ -66,7 +66,7 @@ const AboutSection = () => {
 
   if (loading) {
     return (
-      <section className="py-16 bg-background">
+      <section className="py-10 bg-background">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-center h-64">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
@@ -78,7 +78,7 @@ const AboutSection = () => {
 
   if (!aboutData) {
     return (
-      <section className="py-16 bg-background">
+      <section className="py-10 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-8">About Prabas Travel</h2>
@@ -95,7 +95,7 @@ const AboutSection = () => {
   }
 
   return (
-    <section className="py-16 bg-background">
+    <section className="py-10 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">{aboutData.title}</h2>
