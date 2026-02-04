@@ -490,6 +490,42 @@ export type Database = {
         }
         Relationships: []
       }
+      homepage_ads: {
+        Row: {
+          created_at: string
+          display_order: number
+          id: string
+          is_active: boolean
+          link_url: string | null
+          media_type: string
+          media_url: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          display_order?: number
+          id?: string
+          is_active?: boolean
+          link_url?: string | null
+          media_type?: string
+          media_url: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          display_order?: number
+          id?: string
+          is_active?: boolean
+          link_url?: string | null
+          media_type?: string
+          media_url?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       inquiries: {
         Row: {
           created_at: string | null
@@ -714,6 +750,45 @@ export type Database = {
         }
         Relationships: []
       }
+      prabas_australia: {
+        Row: {
+          created_at: string
+          description: string | null
+          hero_image_url: string | null
+          id: string
+          is_active: boolean
+          offers: Json | null
+          services: Json | null
+          title: string
+          updated_at: string
+          why_choose_us: Json | null
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          hero_image_url?: string | null
+          id?: string
+          is_active?: boolean
+          offers?: Json | null
+          services?: Json | null
+          title: string
+          updated_at?: string
+          why_choose_us?: Json | null
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          hero_image_url?: string | null
+          id?: string
+          is_active?: boolean
+          offers?: Json | null
+          services?: Json | null
+          title?: string
+          updated_at?: string
+          why_choose_us?: Json | null
+        }
+        Relationships: []
+      }
       prabas_holidays: {
         Row: {
           created_at: string
@@ -739,6 +814,45 @@ export type Database = {
           created_at?: string
           description?: string | null
           hero_image_url?: string | null
+          id?: string
+          is_active?: boolean
+          services?: Json | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      prabas_uae: {
+        Row: {
+          contact_info: Json | null
+          created_at: string
+          description: string | null
+          hero_image_url: string | null
+          highlights: Json | null
+          id: string
+          is_active: boolean
+          services: Json | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          contact_info?: Json | null
+          created_at?: string
+          description?: string | null
+          hero_image_url?: string | null
+          highlights?: Json | null
+          id?: string
+          is_active?: boolean
+          services?: Json | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          contact_info?: Json | null
+          created_at?: string
+          description?: string | null
+          hero_image_url?: string | null
+          highlights?: Json | null
           id?: string
           is_active?: boolean
           services?: Json | null

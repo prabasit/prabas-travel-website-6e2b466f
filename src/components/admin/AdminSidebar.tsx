@@ -66,6 +66,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ isCollapsed, onToggleCollap
       title: 'Content Management',
       items: [
         { title: 'Banner Management', href: '/admin/banners', icon: Image, description: 'Manage homepage banners' },
+        { title: 'Homepage Ads', href: '/admin/homepage-ads', icon: Image, description: 'Manage ad banners' },
         { title: 'Pages CMS', href: '/admin/pages', icon: Layout, description: 'Create and edit pages' },
         { title: 'Blog Posts', href: '/admin/blogs', icon: FileText, description: 'Manage blog content' },
         { title: 'SEO Management', href: '/admin/seo', icon: Search, description: 'Manage SEO settings' },
@@ -79,20 +80,18 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ isCollapsed, onToggleCollap
         { title: 'Testimonials', href: '/admin/testimonials', icon: MessageSquare, description: 'Customer testimonials' },
         { title: 'Awards', href: '/admin/awards', icon: Award, description: 'Company achievements' },
         { title: 'Careers', href: '/admin/careers', icon: Briefcase, description: 'Job postings' },
-        // NEW: job applications management page
         { title: 'Job Applications', href: '/admin/job-applications', icon: Users, description: 'View & manage applications' },
       ],
     },
-    // (Optional) travel-related section—keep if your project uses these routes
     {
-      title: 'Travel Operations',
+      title: 'Our Businesses',
       items: [
-        { title: 'Visa Queries', href: '/admin/visa-inquiries', icon: Shield, description: 'Visa inquiry management' },
-        { title: 'Flight Requests', href: '/admin/flight-requests', icon: Plane, description: 'Flight bookings & quotes' },
-        { title: 'Destinations', href: '/admin/destinations', icon: Globe, description: 'Country/region content' },
+        { title: 'Prabas Holidays', href: '/admin/prabas-holidays', icon: Globe, description: 'Manage Prabas Holidays' },
+        { title: 'Flights Nepal', href: '/admin/flights-nepal', icon: Plane, description: 'Manage Flights Nepal' },
+        { title: 'Prabas Australia', href: '/admin/prabas-australia', icon: Globe, description: 'Manage Prabas Australia' },
+        { title: 'Prabas UAE', href: '/admin/prabas-uae', icon: Globe, description: 'Manage Prabas UAE' },
       ],
     },
-    // (Optional) communications section—keep if present in your app
     {
       title: 'Communications',
       items: [

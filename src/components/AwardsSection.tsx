@@ -106,11 +106,11 @@ const AwardsSection = () => {
 
   if (loading) {
     return (
-      <section id="awards" className="py-20 bg-background">
+      <section id="awards" className="py-12 bg-background">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">Awards & Recognition</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Awards & Recognition</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Our commitment to excellence has been recognized by industry leaders
             </p>
           </div>
@@ -123,11 +123,11 @@ const AwardsSection = () => {
   }
 
   return (
-    <section id="awards" className="py-20 bg-background">
+    <section id="awards" className="py-12 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">Awards & Recognition</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Awards & Recognition</h2>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Our commitment to excellence has been recognized by industry leaders
           </p>
         </div>

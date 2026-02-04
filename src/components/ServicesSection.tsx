@@ -101,9 +101,9 @@ const ServicesSection = () => {
   };
 
   return (
-    <section id="services" className="py-20 bg-muted/50">
+    <section id="services" className="py-12 bg-muted/50">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-16">Our Services</h2>
+        <h2 className="text-4xl font-bold text-center mb-12">Our Services</h2>
         {renderContent()}
       </div>
     </section>

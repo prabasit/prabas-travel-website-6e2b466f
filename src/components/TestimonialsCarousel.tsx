@@ -103,9 +103,9 @@ const TestimonialsCarousel = () => {
 
   if (loading) {
     return (
-      <section className="py-12 md:py-16 bg-muted/30">
+      <section className="py-10 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-8">
+          <div className="text-center mb-6">
             <h2 className="text-2xl md:text-3xl font-bold mb-4">What Our Clients Say</h2>
           </div>
           <div className="flex items-center justify-center h-32">
@@ -121,9 +121,9 @@ const TestimonialsCarousel = () => {
   }
 
   return (
-    <section className="py-12 md:py-16 bg-muted/30">
+    <section className="py-10 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-8">
+        <div className="text-center mb-6">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">What Our Clients Say</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Hear from our satisfied customers about their amazing experiences with us

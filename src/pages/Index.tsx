@@ -1,8 +1,8 @@
-
 import React from 'react';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
 import AboutSection from '../components/AboutSection';
+import HomepageAds from '../components/HomepageAds';
 import ServicesSection from '../components/ServicesSection';
 import TestimonialsCarousel from '../components/TestimonialsCarousel';
 import AwardsSection from '../components/AwardsSection';
@@ -24,6 +24,9 @@ const Index = () => {
         <section id="about" className="scroll-mt-16">
           <AboutSection />
         </section>
+
+        {/* Homepage Ads Section */}
+        <HomepageAds />
         
         {/* Services Section */}
         <section id="services" className="scroll-mt-16">
