@@ -1075,6 +1075,16 @@ export type Database = {
           user_data: Json
         }[]
       }
+      admin_operation: {
+        Args: {
+          p_admin_id: string
+          p_data: Json
+          p_operation: string
+          p_table_name: string
+          p_where_clause?: Json
+        }
+        Returns: Json
+      }
       cleanup_old_login_attempts: { Args: never; Returns: undefined }
       get_current_user_role: { Args: never; Returns: string }
       hash_password: { Args: { password: string }; Returns: string }
@@ -1085,6 +1095,7 @@ export type Database = {
           user_data: Json
         }[]
       }
+      validate_admin_session: { Args: { p_admin_id: string }; Returns: boolean }
     }
     Enums: {
       [_ in never]: never
