@@ -609,6 +609,27 @@ export type Database = {
           },
         ]
       }
+      login_attempts: {
+        Row: {
+          attempted_at: string | null
+          email: string
+          id: string
+          success: boolean | null
+        }
+        Insert: {
+          attempted_at?: string | null
+          email: string
+          id?: string
+          success?: boolean | null
+        }
+        Update: {
+          attempted_at?: string | null
+          email?: string
+          id?: string
+          success?: boolean | null
+        }
+        Relationships: []
+      }
       newsletter_subscriptions: {
         Row: {
           email: string
@@ -1054,6 +1075,7 @@ export type Database = {
           user_data: Json
         }[]
       }
+      cleanup_old_login_attempts: { Args: never; Returns: undefined }
       get_current_user_role: { Args: never; Returns: string }
       hash_password: { Args: { password: string }; Returns: string }
       secure_admin_login: {
