@@ -3,9 +3,108 @@ import { Resend } from "npm:resend@2.0.0";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+// Get allowed origins from environment or default to the production domain
+const ALLOWED_ORIGINS = [
+  "https://prabastravel.com",
+  "https://www.prabastravel.com",
+  "https://prabas-travel-website.lovable.app",
+  "https://id-preview--003aea64-2ce2-46a6-bbcc-4b7d77b6392b.lovable.app"
+];
+
+// Simple in-memory rate limiting (resets when function cold starts)
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT_MAX = 10; // Max 10 emails per hour per IP
+const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour in milliseconds
+
+const getCorsHeaders = (origin: string | null): Record<string, string> => {
+  // Check if origin is allowed
+  const allowedOrigin = origin && ALLOWED_ORIGINS.some(allowed => 
+    origin.startsWith(allowed) || origin.includes('lovable.app') || origin.includes('localhost')
+  ) ? origin : ALLOWED_ORIGINS[0];
+  
+  return {
+    "Access-Control-Allow-Origin": allowedOrigin,
+    "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+  };
+};
+
+// Input validation
+const validateEmailRequest = (type: string, data: any): { valid: boolean; error?: string } => {
+  // Validate email format
+  if (!data.email || typeof data.email !== 'string') {
+    return { valid: false, error: "Email is required" };
+  }
+  
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(data.email) || data.email.length > 254) {
+    return { valid: false, error: "Invalid email format" };
+  }
+  
+  // Type-specific validation
+  switch (type) {
+    case 'newsletter':
+      // Newsletter only needs email, which is already validated
+      break;
+      
+    case 'inquiry':
+      if (!data.name || typeof data.name !== 'string' || data.name.length > 100) {
+        return { valid: false, error: "Name is required and must be under 100 characters" };
+      }
+      if (!data.subject || typeof data.subject !== 'string' || data.subject.length > 200) {
+        return { valid: false, error: "Subject is required and must be under 200 characters" };
+      }
+      if (!data.message || typeof data.message !== 'string' || data.message.length > 5000) {
+        return { valid: false, error: "Message is required and must be under 5000 characters" };
+      }
+      break;
+      
+    case 'career':
+      if (!data.name || typeof data.name !== 'string' || data.name.length > 100) {
+        return { valid: false, error: "Name is required and must be under 100 characters" };
+      }
+      if (!data.position || typeof data.position !== 'string' || data.position.length > 200) {
+        return { valid: false, error: "Position is required and must be under 200 characters" };
+      }
+      if (!data.coverLetter || typeof data.coverLetter !== 'string' || data.coverLetter.length > 10000) {
+        return { valid: false, error: "Cover letter is required and must be under 10000 characters" };
+      }
+      break;
+      
+    default:
+      return { valid: false, error: "Invalid email type" };
+  }
+  
+  return { valid: true };
+};
+
+// Simple HTML escaping for user input
+const escapeHtml = (text: string): string => {
+  if (!text) return '';
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+};
+
+// Rate limiting check
+const checkRateLimit = (clientIP: string): { allowed: boolean; remaining: number } => {
+  const now = Date.now();
+  const record = rateLimitMap.get(clientIP);
+  
+  if (!record || now > record.resetTime) {
+    rateLimitMap.set(clientIP, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
+    return { allowed: true, remaining: RATE_LIMIT_MAX - 1 };
+  }
+  
+  if (record.count >= RATE_LIMIT_MAX) {
+    return { allowed: false, remaining: 0 };
+  }
+  
+  record.count++;
+  return { allowed: true, remaining: RATE_LIMIT_MAX - record.count };
 };
 
 // Brand colors and styling
@@ -394,14 +493,54 @@ interface EmailRequest {
 }
 
 const handler = async (req: Request): Promise<Response> => {
+  const origin = req.headers.get("origin");
+  const corsHeaders = getCorsHeaders(origin);
+  
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
+    // Rate limiting
+    const clientIP = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || 
+                     req.headers.get("x-real-ip") || 
+                     "unknown";
+    
+    const rateLimit = checkRateLimit(clientIP);
+    if (!rateLimit.allowed) {
+      console.log(`Rate limit exceeded for IP: ${clientIP}`);
+      return new Response(
+        JSON.stringify({ error: "Rate limit exceeded. Please try again later." }),
+        {
+          status: 429,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+    
     const { type, data, adminEmail = "info@prabastravel.com" }: EmailRequest = await req.json();
 
+    // Validate input
+    const validation = validateEmailRequest(type, data);
+    if (!validation.valid) {
+      console.log(`Validation failed: ${validation.error}`);
+      return new Response(
+        JSON.stringify({ error: validation.error }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+    
+    // Sanitize user inputs
+    if (data.name) data.name = escapeHtml(data.name);
+    if (data.message) data.message = escapeHtml(data.message);
+    if (data.subject) data.subject = escapeHtml(data.subject);
+    if (data.coverLetter) data.coverLetter = escapeHtml(data.coverLetter);
+    if (data.position) data.position = escapeHtml(data.position);
+    
     console.log(`Processing ${type} email for:`, data.email);
 
     const emailsToSend: Array<{ to: string; subject: string; html: string; replyTo?: string }> = [];
