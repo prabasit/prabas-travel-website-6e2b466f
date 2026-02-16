@@ -30,7 +30,7 @@ const ServicesSection = () => {
         
         if (dbError) throw dbError;
 
-        setServices(data || []);
+        setServices((data || []) as unknown as Service[]);
       } catch (err: any) {
         console.error('Error fetching services:', err);
         setError('Failed to load services. Please try again later.');

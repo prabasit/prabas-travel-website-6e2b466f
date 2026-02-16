@@ -32,7 +32,7 @@ const Holidays = () => {
   const fetchData = async () => {
     try {
       const { data: holidaysData, error } = await supabase
-        .from('holidays') // Assuming your Supabase table is named 'holidays'
+        .from('prabas_holidays')
         .select('*')
         .eq('is_active', true)
         .limit(1)
@@ -41,9 +41,12 @@ const Holidays = () => {
       if (error) throw error;
       
       if (holidaysData) {
+        const services = Array.isArray(holidaysData.services) ? holidaysData.services as unknown as HolidayFeature[] : [];
         setData({
-          ...holidaysData,
-          features: Array.isArray(holidaysData.features) ? holidaysData.features : []
+          id: holidaysData.id,
+          title: holidaysData.title,
+          description: holidaysData.description || '',
+          features: services
         });
       }
     } catch (error) {

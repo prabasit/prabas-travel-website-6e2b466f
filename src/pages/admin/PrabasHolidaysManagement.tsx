@@ -46,7 +46,7 @@ const PrabasHolidaysManagement = () => {
       if (error && error.code !== 'PGRST116') { // Ignore "no rows" error
         throw error;
       }
-      setData(holidaysData);
+      setData(holidaysData as unknown as PrabasHolidaysData);
     } catch (error: any) {
       console.error('Error fetching holidays data:', error);
       toast({
@@ -68,7 +68,7 @@ const PrabasHolidaysManagement = () => {
         .update({
           title: data.title,
           description: data.description,
-          services: data.services,
+          services: data.services as any,
           hero_image_url: data.hero_image_url,
           updated_at: new Date().toISOString()
         })

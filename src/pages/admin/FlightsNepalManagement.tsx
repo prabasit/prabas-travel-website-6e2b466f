@@ -47,7 +47,7 @@ const FlightsNepalManagement = () => {
         throw error;
       }
       
-      setData(flightsData);
+      setData(flightsData as unknown as FlightsNepalData);
     } catch (error: any) {
       console.error('Error fetching flights data:', error);
       toast({
@@ -70,7 +70,7 @@ const FlightsNepalManagement = () => {
         .update({
           title: data.title,
           description: data.description,
-          features: data.features,
+          features: data.features as any,
           hero_image_url: data.hero_image_url,
           updated_at: new Date().toISOString()
         })

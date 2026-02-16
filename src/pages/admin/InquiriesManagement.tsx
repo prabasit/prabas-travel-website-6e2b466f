@@ -38,7 +38,7 @@ const InquiriesManagement = () => {
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      setInquiries(data || []);
+      setInquiries((data || []) as unknown as Inquiry[]);
     } catch (error) {
       console.error('Error fetching inquiries:', error);
       toast({

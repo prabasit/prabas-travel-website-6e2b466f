@@ -42,7 +42,7 @@ const FlightsNepal = () => {
       if (flightsData) {
         setData({
           ...flightsData,
-          features: Array.isArray(flightsData.features) ? flightsData.features : []
+          features: Array.isArray(flightsData.features) ? flightsData.features as unknown as FlightFeature[] : []
         });
       }
     } catch (error) {

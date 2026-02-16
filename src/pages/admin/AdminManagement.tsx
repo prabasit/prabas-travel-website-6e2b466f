@@ -37,7 +37,7 @@ const AdminManagement = () => {
       // This fetch will now work because the RLS policies are non-recursive.
       const { data, error } = await supabase.from('admin_users').select('*');
       if (error) throw error;
-      setAdminUsers(data || []);
+      setAdminUsers((data || []) as unknown as AdminUser[]);
     } catch (error: any) {
       console.error('Error fetching admin users:', error);
       toast({ title: "Error", description: `Failed to load admin users: ${error.message}`, variant: "destructive" });

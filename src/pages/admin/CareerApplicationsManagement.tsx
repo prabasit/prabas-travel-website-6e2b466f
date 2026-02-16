@@ -63,7 +63,7 @@ export default function CareerApplicationsManagement() {
         if (appsErr) throw appsErr;
         if (careersErr) throw careersErr;
 
-        setApplications(apps || []);
+        setApplications((apps || []) as unknown as JobApplication[]);
         setCareers((careersData as Career[]) || []);
       } catch (error) {
         console.error(error);
