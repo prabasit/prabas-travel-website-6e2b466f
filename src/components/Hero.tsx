@@ -50,7 +50,7 @@ const Hero = () => {
       if (data && data.length > 0) {
         const processedSlides = data.map(slide => ({
           ...slide,
-          buttons: Array.isArray(slide.buttons) ? slide.buttons : []
+          buttons: Array.isArray(slide.buttons) ? slide.buttons as unknown as BannerButton[] : []
         }));
         setSlides(processedSlides);
       } else {

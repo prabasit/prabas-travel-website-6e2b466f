@@ -165,7 +165,7 @@ export const useSecureAuth = () => {
         return false;
       }
 
-      const userData = data[0].user_data;
+      const userData = data[0].user_data as Record<string, any>;
       const now = Date.now();
       const sessionToken = generateSessionToken();
       

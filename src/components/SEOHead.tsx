@@ -64,7 +64,7 @@ const SEOHead: React.FC<SEOHeadProps> = ({ pageIdentifier, overrides = {} }) => 
         .maybeSingle();
       
       if (error) throw error;
-      return data as PageSEO | null;
+      return data as unknown as PageSEO | null;
     },
     staleTime: 5 * 60 * 1000, // Cache for 5 minutes
   });

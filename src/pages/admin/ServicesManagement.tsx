@@ -61,7 +61,7 @@ const ServicesManagement = () => {
         .order('display_order', { ascending: true });
 
       if (error) throw error;
-      setServices(data || []);
+      setServices((data || []) as unknown as Service[]);
     } catch (error: any) {
       console.error('Error fetching services:', error);
       toast({ title: "Error", description: `Failed to load services: ${error.message}`, variant: "destructive" });

@@ -45,7 +45,7 @@ const TeamManagement = () => {
         .order('display_order', { ascending: true });
 
       if (error) throw error;
-      setTeamMembers(data || []);
+      setTeamMembers((data || []) as unknown as TeamMember[]);
     } catch (error: any) {
       console.error('Error fetching team members:', error);
       toast({ title: "Error", description: `Failed to load team members: ${error.message}`, variant: "destructive" });
@@ -86,7 +86,7 @@ const TeamManagement = () => {
 
     setSaving(true);
     try {
-      const dataToUpsert = { ...editingMember };
+      const dataToUpsert = { ...editingMember } as any;
       const { error } = await supabase.from('team_members').upsert(dataToUpsert).select();
       if (error) throw error;
       toast({ title: "Success", description: "Team member saved successfully!" });

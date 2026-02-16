@@ -66,9 +66,9 @@ const PrabasAustraliaManagement = () => {
       if (australiaData) {
         setData({
           ...australiaData,
-          services: australiaData.services || [],
-          offers: australiaData.offers || [],
-          why_choose_us: australiaData.why_choose_us || [],
+          services: (australiaData.services || []) as unknown as Service[],
+          offers: (australiaData.offers || []) as unknown as Offer[],
+          why_choose_us: (australiaData.why_choose_us || []) as unknown as WhyChooseUs[],
         });
       }
     } catch (error: any) {
@@ -94,9 +94,9 @@ const PrabasAustraliaManagement = () => {
           title: data.title,
           description: data.description,
           hero_image_url: data.hero_image_url,
-          services: data.services,
-          offers: data.offers,
-          why_choose_us: data.why_choose_us,
+          services: data.services as any,
+          offers: data.offers as any,
+          why_choose_us: data.why_choose_us as any,
           updated_at: new Date().toISOString()
         })
         .eq('id', data.id);

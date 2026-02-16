@@ -37,7 +37,7 @@ interface PageSEO {
   canonical_url: string | null;
   robots: string | null;
   structured_data: Record<string, unknown> | null;
-  additional_meta: unknown[] | null;
+  additional_meta: any[] | null;
   is_active: boolean;
   created_at: string;
   updated_at: string;
@@ -142,8 +142,8 @@ const SEOManagement = () => {
           twitter_creator: data.twitter_creator,
           canonical_url: data.canonical_url,
           robots: data.robots,
-          structured_data: data.structured_data,
-          additional_meta: data.additional_meta,
+          structured_data: data.structured_data as any,
+          additional_meta: data.additional_meta as any,
         })
         .eq('id', data.id);
       if (error) throw error;
@@ -176,7 +176,7 @@ const SEOManagement = () => {
           google_analytics_id: data.google_analytics_id,
           google_tag_manager_id: data.google_tag_manager_id,
           facebook_pixel_id: data.facebook_pixel_id,
-          organization_schema: data.organization_schema,
+          organization_schema: data.organization_schema as any,
           favicon_url: data.favicon_url,
           apple_touch_icon: data.apple_touch_icon,
         })

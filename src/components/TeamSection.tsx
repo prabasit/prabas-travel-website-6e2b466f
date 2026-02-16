@@ -36,7 +36,7 @@ const TeamSection = () => {
       if (error) throw error;
       
       if (data) {
-        setTeamMembers(data);
+        setTeamMembers(data as unknown as TeamMember[]);
       }
       
     } catch (error) {

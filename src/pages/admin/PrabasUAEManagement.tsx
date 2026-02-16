@@ -59,9 +59,9 @@ const PrabasUAEManagement = () => {
       if (uaeData) {
         setData({
           ...uaeData,
-          services: uaeData.services || [],
-          contact_info: uaeData.contact_info || { phone: '', whatsapp: [], email: '', location: '' },
-          highlights: uaeData.highlights || [],
+          services: (uaeData.services || []) as unknown as Service[],
+          contact_info: (uaeData.contact_info || { phone: '', whatsapp: [], email: '', location: '' }) as unknown as ContactInfo,
+          highlights: (uaeData.highlights || []) as unknown as string[],
         });
       }
     } catch (error: any) {
@@ -87,8 +87,8 @@ const PrabasUAEManagement = () => {
           title: data.title,
           description: data.description,
           hero_image_url: data.hero_image_url,
-          services: data.services,
-          contact_info: data.contact_info,
+          services: data.services as any,
+          contact_info: data.contact_info as any,
           highlights: data.highlights,
           updated_at: new Date().toISOString()
         })
