@@ -8,6 +8,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { FileUpload } from '@/components/ui/file-upload';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
+import { useSecureAuth } from '@/hooks/useSecureAuth';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { PlusCircle, Edit, Trash2 } from 'lucide-react';
@@ -30,6 +31,7 @@ const TeamManagement = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingMember, setEditingMember] = useState<Partial<TeamMember> | null>(null);
   const { toast } = useToast();
+  const { adminUser } = useSecureAuth();
 
   useEffect(() => {
     fetchTeamMembers();
@@ -70,7 +72,14 @@ const TeamManagement = () => {
     if (!window.confirm("Are you sure you want to delete this team member?")) return;
 
     try {
-      const { error } = await supabase.from('team_members').delete().eq('id', id);
+      if (!adminUser?.id) throw new Error('Not authenticated');
+      const { error } = await supabase.rpc('admin_operation', {
+        p_admin_id: adminUser.id,
+        p_operation: 'DELETE',
+        p_table_name: 'team_members',
+        p_data: {},
+        p_where_clause: { id },
+      });
       if (error) throw error;
       toast({ title: "Success", description: "Team member deleted successfully!" });
       fetchTeamMembers();
@@ -86,8 +95,16 @@ const TeamManagement = () => {
 
     setSaving(true);
     try {
-      const dataToUpsert = { ...editingMember } as any;
-      const { error } = await supabase.from('team_members').upsert(dataToUpsert).select();
+      if (!adminUser?.id) throw new Error('Not authenticated');
+      const payload: any = { ...editingMember };
+      const isUpdate = !!payload.id;
+      const { error } = await supabase.rpc('admin_operation', {
+        p_admin_id: adminUser.id,
+        p_operation: isUpdate ? 'UPDATE' : 'INSERT',
+        p_table_name: 'team_members',
+        p_data: payload,
+        p_where_clause: isUpdate ? { id: payload.id } : null,
+      });
       if (error) throw error;
       toast({ title: "Success", description: "Team member saved successfully!" });
       setIsDialogOpen(false);
