@@ -1,0 +1,1 @@
+ALTER TABLE public.homepage_ads ENABLE ROW LEVEL SECURITY;
