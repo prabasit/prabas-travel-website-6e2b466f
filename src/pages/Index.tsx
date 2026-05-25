@@ -1,15 +1,17 @@
 import React from 'react';
 import Header from '../components/Header';
-import Hero from '../components/Hero';
-import AboutSection from '../components/AboutSection';
-import HomepageAds from '../components/HomepageAds';
-import ServicesSection from '../components/ServicesSection';
 import TestimonialsCarousel from '../components/TestimonialsCarousel';
 import AwardsSection from '../components/AwardsSection';
 import ContactSection from '../components/ContactSection';
 import Newsletter from '../components/Newsletter';
 import Footer from '../components/Footer';
 import SEOHead from '../components/SEOHead';
+import PrabasHero from '../components/home/PrabasHero';
+import WhoWeAre from '../components/home/WhoWeAre';
+import BrandFamily from '../components/home/BrandFamily';
+import WhatWeOffer from '../components/home/WhatWeOffer';
+import AirlinePartners from '../components/home/AirlinePartners';
+import GlobalBranches from '../components/home/GlobalBranches';
 
 const Index = () => {
   return (
@@ -17,38 +19,38 @@ const Index = () => {
       <SEOHead pageIdentifier="home" />
       <Header />
       <main>
-        {/* Hero Section */}
-        <Hero />
-        
-        {/* About Us Section */}
+        <PrabasHero />
+
         <section id="about" className="scroll-mt-16">
-          <AboutSection />
+          <WhoWeAre />
         </section>
 
-        {/* Homepage Ads Section */}
-        <HomepageAds />
-        
-        {/* Services Section */}
-        <section id="services" className="scroll-mt-16">
-          <ServicesSection />
+        <section id="brands" className="scroll-mt-16">
+          <BrandFamily />
         </section>
-        
-        {/* Testimonials Section */}
+
+        <section id="services" className="scroll-mt-16">
+          <WhatWeOffer />
+        </section>
+
+        <AirlinePartners />
+
+        <section id="branches" className="scroll-mt-16">
+          <GlobalBranches />
+        </section>
+
         <section id="testimonials" className="scroll-mt-16">
           <TestimonialsCarousel />
         </section>
 
-        {/* Awards & Recognition Section */}
         <section id="awards" className="scroll-mt-16">
           <AwardsSection />
         </section>
-        
-        {/* Contact Section */}
+
         <section id="contact" className="scroll-mt-16">
           <ContactSection />
         </section>
-        
-        {/* Newsletter Section */}
+
         <Newsletter />
       </main>
       <Footer />
