@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://www.prabastravel.com/sitemap.xml
+Sitemap: https://prabas-travel-website.lovable.app/sitemap.xml
