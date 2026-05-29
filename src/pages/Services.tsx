@@ -11,6 +11,7 @@ const Services = () => {
       <SEOHead pageIdentifier="services" />
       <Header />
       <div className="pt-24">
+        <h1 className="sr-only">Our Travel Services</h1>
         <ServicesSection />
       </div>
       <Footer />

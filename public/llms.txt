@@ -1,0 +1,23 @@
+# Prabas Travel & Tours
+
+> Nepal's leading travel agency since 2014 — flight booking, holiday packages, visa assistance, and international travel services.
+
+## Pages
+
+- [Home](/): Overview of Prabas Travel & Tours.
+- [About](/about): Company story, mission, and history since 2014.
+- [Services](/services): Travel services including flights, holidays, and visa assistance.
+- [Team](/team): Meet the Prabas Travel team.
+- [Contact](/contact): Get in touch for inquiries and quotes.
+- [Blog](/blog): Travel guides, tips, and updates from Nepal.
+- [Careers](/careers): Open positions and applications.
+- [Testimonials](/testimonials): Client experiences and reviews.
+- [Awards](/awards): Recognitions earned by Prabas Travel.
+- [Flights Nepal](/flights-nepal): Domestic and international flight booking.
+- [Prabas Holidays](/prabas-holidays): Curated holiday packages.
+- [Prabas Travel Australia](/prabas-travel-australia): Australia branch services.
+- [Prabas Travel UAE](/prabas-travel-uae): UAE branch services.
+
+## Optional
+
+- [Inquiries](/inquiries): Submit a travel inquiry.

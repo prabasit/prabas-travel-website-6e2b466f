@@ -178,6 +178,7 @@ const TestimonialsCarousel = () => {
                 variant="outline"
                 size="icon"
                 onClick={prevTestimonial}
+                aria-label="Previous testimonial"
                 className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 bg-background/80 backdrop-blur-sm"
               >
                 <ChevronLeft className="h-4 w-4" />
@@ -186,6 +187,7 @@ const TestimonialsCarousel = () => {
                 variant="outline"
                 size="icon"
                 onClick={nextTestimonial}
+                aria-label="Next testimonial"
                 className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 bg-background/80 backdrop-blur-sm"
               >
                 <ChevronRight className="h-4 w-4" />
@@ -200,6 +202,7 @@ const TestimonialsCarousel = () => {
                 <button
                   key={index}
                   onClick={() => setCurrentIndex(index)}
+                  aria-label={`Go to testimonial ${index + 1}`}
                   className={`w-2 h-2 rounded-full transition-all ${
                     index === currentIndex ? 'bg-primary w-8' : 'bg-muted-foreground/30'
                   }`}
