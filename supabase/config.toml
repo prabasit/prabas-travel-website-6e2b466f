@@ -1,1 +1,2 @@
-project_id = "fsowenkhfqoypvbjgibi"
+project_id = "fsowenkhfqoypvbjgibi"[functions.indexnow-submit]
+verify_jwt = false

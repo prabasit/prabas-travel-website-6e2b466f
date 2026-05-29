@@ -110,6 +110,14 @@ const BlogManagement = () => {
         });
       }
 
+      // Ping IndexNow for instant indexing when the post is published
+      if (formData.is_published && blogData.slug) {
+        const url = `https://prabas-travel-website.lovable.app/blog/${blogData.slug}`;
+        supabase.functions
+          .invoke('indexnow-submit', { body: { urls: [url, 'https://prabas-travel-website.lovable.app/blog'] } })
+          .catch((e) => console.warn('IndexNow ping failed', e));
+      }
+
       fetchBlogs();
       resetForm();
     } catch (error) {
