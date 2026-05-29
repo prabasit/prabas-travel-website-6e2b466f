@@ -11,6 +11,7 @@ const About = () => {
       <SEOHead pageIdentifier="about" />
       <Header />
       <div className="pt-24">
+        <h1 className="sr-only">About Prabas Travel & Tours</h1>
         <AboutSection />
       </div>
       <Footer />
